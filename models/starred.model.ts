@@ -16,4 +16,4 @@ const StarredSchmema = new Schema<starredDocument>({
     }
 })
 
-export const Starred = mongoose.model('Starred', StarredSchmema)
+export const Starred = mongoose.models.starred || mongoose.model('Starred', StarredSchmema)

@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+    background-color: rgb(82 82 91 / var(--tw-bg-opacity, 1));
+}
