@@ -1,12 +1,12 @@
 import mongoose, {ObjectId, Schema} from "mongoose";
 
-interface starredDocument {
+interface StarredDocument {
   orgs: string
   starredBy: ObjectId 
 }
 
 
-const StarredSchmema = new Schema<starredDocument>({
+const StarredSchmema = new Schema<StarredDocument>({
     orgs : [{
         type: String
     }],
@@ -16,4 +16,5 @@ const StarredSchmema = new Schema<starredDocument>({
     }
 })
 
-export const Starred = mongoose.models.starred || mongoose.model('Starred', StarredSchmema)
+const Starred = mongoose.models.Starred || mongoose.model<StarredDocument>('Starred', StarredSchmema)
+export default Starred

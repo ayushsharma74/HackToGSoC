@@ -3,9 +3,14 @@ import React from 'react'
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { jura } from '@/fonts/font';
+import { usePathname } from 'next/navigation';
 
 
 const Navbar = () => {
+
+  const pathname = usePathname()
+
+  console.log(pathname);
 
   return (
     <nav className="px-4 py-2 bg-black flex justify-between items-center border-b border-zinc-900">
@@ -17,13 +22,13 @@ const Navbar = () => {
     </div>
     <div className={` ${jura.className} flex gap-3`}>
 
-    <Link href={"/dashboard/starred"} className='text-white hover:underline '>
+    <Link href={"/starred"} className={`text-white hover:underline ${pathname === '/starred' ? 'underline' : ''} `}>
       Starred
     </Link>
-    <Link href={"/dashboard/starred"} className='text-white hover:underline '>
+    <Link href={"/organizations"} className={`text-white hover:underline ${pathname === '/organizations' ? 'underline' : ''} `}>
       Organizations
     </Link>
-    <Link href={"/dashboard/starred"} className='text-white hover:underline '>
+    <Link href={"/issues"} className={`text-white hover:underline ${pathname === '/issues' ? 'underline' : ''} `}>
       Issues
     </Link>
       </div>
@@ -31,7 +36,7 @@ const Navbar = () => {
     <Link href={"https://github.com/ayushsharma74/codezilla"} target="_blank" className="border rounded-md border-zinc-800 p-2 hover:bg-zinc-800">
      <FaGithub size={23} color="white"/>
     </Link>
-    <Link href={"#"} className="text-white border border-zinc-800 py-2 px-3 rounded-md font-bold hover:bg-zinc-800 transition-colors">
+    <Link href={"#"} className={`${jura.className} text-white border border-zinc-800 py-2 px-3 rounded-md font-semibold hover:bg-zinc-800 transition-colors`}>
       Get Started
     </Link>
     </div>
