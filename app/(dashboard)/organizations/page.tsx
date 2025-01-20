@@ -1,23 +1,37 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaGithub } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
 import { CiStar } from "react-icons/ci";
+import axios  from "axios";
 
 
 
 
 const Organizations = () => {
+
+  const [data, setData] = useState<Array<Record<string, any>>>([]) 
+
+  useEffect(() => {
+    axios.get("/api/orgs-data").then((res) => {
+      // console.log(res.data);
+      setData(res.data);
+      console.log(data);
+      
+    });
+  }, []);
+
+
   return (
-    <div className='p-10'>
-      <div className='border border-[#a8854a] flex flex-col w-72 px-5 pt-4 pb-3 gap-9 rounded-md'>
+    <div className='p-10 flex flex-wrap gap-10 h-fit '>
+      {data && data?.map((item, idx) => <div key={idx} className='border border-[#a8854a] flex flex-col w-72 px-5 pt-4 pb-3 gap-9 rounded-md'>
         <div className='section1'>
           <div className='flex justify-between items-start'>
 
           <div className='w-12 h-12 rounded-md border border-[#cb9334] mb-3'>
-            <Image src={"/image.png"} width={100} height={100} alt='someimage' className='rounded-md'/>
+            <Image src={item["Image URL"]} width={100} height={100} alt='someimage' className='rounded-md'/>
           </div>
           <div className='rounded-md bg-[#FEE8C2] border-zinc-800 p-1 hover:bg-[#dec9a5] transition-colors duration-300'>
             <CiStar size={28}/>
@@ -60,7 +74,7 @@ const Organizations = () => {
         </Link>
           </div>
         </div>
-      </div>
+      </div>)}
     </div>
   )
 }
