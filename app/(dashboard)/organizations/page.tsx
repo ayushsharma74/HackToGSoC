@@ -1,82 +1,93 @@
-"use client"
-import Image from 'next/image'
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react'
-import { FaGithub } from "react-icons/fa";
-import { IoIosLink } from "react-icons/io";
-import { CiStar } from "react-icons/ci";
-import axios  from "axios";
+"use client";
 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { PacmanLoader } from "react-spinners";
+import OrganizationCard from "@/components/main/OrganizationCard";
+import { RoughNotation } from "react-rough-notation";
+import { Technologies } from "@/utils/technologies";
 
-
-
-const Organizations = () => {
-
-  const [data, setData] = useState<Array<Record<string, any>>>([]) 
-
-  useEffect(() => {
-    axios.get("/api/orgs-data").then((res) => {
-      // console.log(res.data);
-      setData(res.data);
-      console.log(data);
-      
-    });
-  }, []);
-
-
-  return (
-    <div className='p-10 flex flex-wrap gap-10 h-fit '>
-      {data && data?.map((item, idx) => <div key={idx} className='border border-[#a8854a] flex flex-col w-72 px-5 pt-4 pb-3 gap-9 rounded-md'>
-        <div className='section1'>
-          <div className='flex justify-between items-start'>
-
-          <div className='w-12 h-12 rounded-md border border-[#cb9334] mb-3'>
-            <Image src={item["Image URL"]} width={100} height={100} alt='someimage' className='rounded-md'/>
-          </div>
-          <div className='rounded-md bg-[#FEE8C2] border-zinc-800 p-1 hover:bg-[#dec9a5] transition-colors duration-300'>
-            <CiStar size={28}/>
-          </div>
-          </ div>
-          <h1 className='font-extrabold text-2xl mb-1 underline'>
-            AFLplusplus
-          </h1>
-          <p className='text-md font-medium mb-5'>
-            State of the art fuzzing for better security
-          </p>
-          <div className='text-sm font-semibold flex flex-wrap gap-2 mb-2'>
-            Languages: 
-            <span className='border border-[#cb9334] bg-[#dcb572] px-2 text-xs rounded-md flex items-center justify-center'>
-              C++
-            </span>
-            <span className='border border-[#cb9334] bg-[#dcb572] px-2 text-xs rounded-md flex items-center justify-center'>
-              Java
-            </span>
-            <span className='border border-[#cb9334] bg-[#dcb572] px-2 text-xs rounded-md flex items-center justify-center'>
-              JavaScript
-            </span>
-            <span className='border border-[#cb9334] bg-[#dcb572] px-2 text-xs rounded-md flex items-center justify-center'>
-              Java
-            </span>
-          
-          </div>
-          <p className='text-sm font-semibold'>
-            Topics: Bug finding, Fuzzing, Software Testing
-          </p>
-        </div>
-        <div className='sectionforlinks flex justify-end'>
-          <div className='flex gap-2'>
-          
-        <Link href={"https://www.github.com"} className='rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300'>
-          <FaGithub size={25}/>
-        </Link>
-        <Link href={"https://www.github.com"} className='rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300'>
-          <IoIosLink size={25}/>
-        </Link>
-          </div>
-        </div>
-      </div>)}
-    </div>
-  )
+interface Organization {
+  "Image URL": string;
+  Name: string;
+  Description: string;
+  Technologies?: string; // Changed Languages to Technologies
+  Topics: string;
+  "GitHub URL": string;
+  URL: string;
+  years: string
 }
 
-export default Organizations
+const Organizations = () => {
+  const [data, setData] = useState<Organization[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/api/orgs-data")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  return loading ? (
+    <div className="w-full h-screen flex justify-center items-center">
+      <PacmanLoader
+        size={20}
+        loading={loading}
+        color="black"
+      />
+    </div>
+  ) : (
+    <main className="max-w-[95%] mx-auto  ">
+      <div>
+        <h1 className="text-7xl font-extrabold text-left mt-4 ">
+          Organizations
+        </h1>
+        <p className=" mt-3 text-lg font-mono">
+          Find the best{" "}
+          <RoughNotation type="underline" show={true}>
+            organizations
+          </RoughNotation>{" "}
+          to work on.
+        </p>
+      </div>
+      <div className="mt-5 w-full flex justify-start gap-3 ">
+        <select name="Technologies" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]">
+          <option value="All">Select Technology</option>
+          (
+          {Technologies.map((item, idx) => (
+            <option key={idx} value={item}>
+              {item}
+            </option>
+          ))})
+        </select>
+        <select name="years" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]">
+          <option value="All">Select year</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2016">2016</option>
+          <option value="2016">2016</option>
+        </select>
+      </div>
+      <div className=" py-10 flex flex-wrap gap-7 h-fit justify-center">
+        {data &&
+          data?.map((item, idx) => <OrganizationCard key={idx} item={item} />)}
+      </div>
+    </main>
+  );
+};
+
+export default Organizations;

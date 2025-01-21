@@ -18,14 +18,14 @@ const Footer = (props: Props) => {
       <p className="text-black font-semibold flex gap-1">
         Brought to you by <Link href={props.twitterUrl}><span className="underline hover:no-underline">ayush</span></Link>
       </p>
-      <div className="flex gap-2">
-        <Link href={props.githubUrl}>
+      <div className="flex gap-3">
+        <Link href={props.githubUrl} className="hover:scale-125 transition-all" target="_blank">
           <FaGithub size={23} color="black"/>
         </Link>
-        <Link href={props.twitterUrl}>
+        <Link href={props.twitterUrl} className="hover:scale-125 transition-all" target="_blank">
           <FaXTwitter size={23} color="black"/>
         </Link>
-        <Link href={props.discordUrl}>
+        <Link href={props.discordUrl} className="hover:scale-125 transition-all" target="_blank">
           <FaDiscord size={23} color="black"/>
         </Link>
       </div>

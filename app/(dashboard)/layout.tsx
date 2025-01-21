@@ -1,6 +1,12 @@
 import "@/styles/globals.css"
 import { jura } from "@/fonts/font";
 import Navbar from "@/components/main/Navbar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "GsocZilla | Dashboard",
+  description: "An app to simplify gsoc contributions",
+};
 
 export default function RootLayout({
     children,
@@ -11,7 +17,7 @@ export default function RootLayout({
       <html>
 
         <body>
-      <main className={`${jura.className} bg-[#FEE8C2] h-screen `} >
+      <main className={`${jura.className} bg-[#FEE8C2] h-fit `} >
         <Navbar />
         {children}
       </main>
