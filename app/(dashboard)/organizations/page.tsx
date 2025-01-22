@@ -23,6 +23,7 @@ const Organizations = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [technologyFilter, setTechnologyFilter] = useState<string>("all");
   const [yearFilter, setYearFilter] = useState<string>("all");
+  
 
   useEffect(() => {
     console.log("Effect Rendered");
@@ -43,6 +44,8 @@ const Organizations = () => {
         setLoading(false);
       });
   };
+
+  
 
   const years = ["All", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
   return loading ? (

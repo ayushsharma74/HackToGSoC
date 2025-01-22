@@ -1,10 +1,16 @@
 import React from 'react'
 
 
-const page = () => {
+const Starred = () => {
   return (
-    <div>Starred</div>
+    <main className="max-w-[95%] mx-auto">
+      <div>
+
+      <h1 className='text-7xl font-extrabold mt-4'>Starred</h1>
+      <p>Your starred projects will appear here</p>
+      </div>
+    </main>
   )
 }
 
-export default page
+export default Starred
