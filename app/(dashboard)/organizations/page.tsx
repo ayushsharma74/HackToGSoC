@@ -11,21 +11,28 @@ interface Organization {
   "Image URL": string;
   Name: string;
   Description: string;
-  Technologies?: string; // Changed Languages to Technologies
+  Technologies?: string;
   Topics: string;
   "GitHub URL": string;
   URL: string;
-  years: string
+  years: string;
 }
 
 const Organizations = () => {
   const [data, setData] = useState<Organization[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [technologyFilter, setTechnologyFilter] = useState<string>("all");
+  const [yearFilter, setYearFilter] = useState<string>("all");
 
   useEffect(() => {
+    console.log("Effect Rendered");
+    fetchData();
+  }, [technologyFilter, yearFilter]);
+
+  const fetchData = () => {
     setLoading(true);
     axios
-      .get("/api/orgs-data")
+      .get(`/api/orgs-data?technology=${technologyFilter}&year=${yearFilter}`)
       .then((res) => {
         setData(res.data);
       })
@@ -35,15 +42,12 @@ const Organizations = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  };
 
+  const years = ["All", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
   return loading ? (
     <div className="w-full h-screen flex justify-center items-center">
-      <PacmanLoader
-        size={20}
-        loading={loading}
-        color="black"
-      />
+      <PacmanLoader size={20} loading={loading} color="black" />
     </div>
   ) : (
     <main className="max-w-[95%] mx-auto  ">
@@ -53,34 +57,37 @@ const Organizations = () => {
         </h1>
         <p className=" mt-3 text-lg font-mono">
           Find the best{" "}
-          <RoughNotation type="underline" show={true}>
+          <RoughNotation type="underline" show={true} animationDelay={800}>
             organizations
           </RoughNotation>{" "}
           to work on.
         </p>
       </div>
       <div className="mt-5 w-full flex justify-start gap-3 ">
-        <select name="Technologies" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]">
-          <option value="All">Select Technology</option>
-          (
+        <select
+          onChange={(e) => setTechnologyFilter(e.target.value)}
+          name="Technologies"
+          id=""
+          className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]"
+          value={technologyFilter}
+        >
+          <option value="all">Select Technology</option>
           {Technologies.map((item, idx) => (
-            <option key={idx} value={item}>
-              {item}
-            </option>
-          ))})
+            <option key={idx} value={item}>{item}</option>
+          ))}
         </select>
-        <select name="years" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]">
-          <option value="All">Select year</option>
-          <option value="2016">2016</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-          <option value="2019">2019</option>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2016">2016</option>
-          <option value="2016">2016</option>
-        </select>
+          <select
+            onChange={(e) => setYearFilter(e.target.value)}
+            name="years"
+            id=""
+            className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]"
+            value={yearFilter}
+          >
+             <option value="all">Select Year</option>
+            {years.map((year,idx) => (
+               <option key={idx} value={year}>{year}</option>
+            ))}
+          </select>
       </div>
       <div className=" py-10 flex flex-wrap gap-7 h-fit justify-center">
         {data &&

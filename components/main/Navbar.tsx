@@ -4,6 +4,8 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { jura } from '@/fonts/font';
 import { usePathname } from 'next/navigation';
+import { IoRocketOutline } from "react-icons/io5";
+
 
 
 const Navbar = () => {
@@ -17,7 +19,7 @@ const Navbar = () => {
       <div className={`${jura.className} flex items-center gap-6 justify-center`}>
 
     <Link href={'/'} className={`${jura.className} hover:underline  text-black text-2xl`}>
-      <span className='font-bold'>GsocZilla</span>
+      <span className='font-bold flex gap-2 items-center'>HackToGSoC <IoRocketOutline size={22}/> </span>
     </Link>
     </div>
     <div className={` ${jura.className} flex gap-3  `}>
@@ -32,8 +34,9 @@ const Navbar = () => {
       Issues
     </Link>
       </div>
-    <div className="flex gap-2 items-center">
-    <Link href={"https://github.com/ayushsharma74/codezilla"} target="_blank" className="rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300">
+    <div className="flex gap-2 items-center ">
+    <Link href={"https://github.com/ayushsharma74/codezilla"} target="_blank" className="rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300 flex gap-2 font-bold">
+    <h1> Star this Project </h1>
      <FaGithub size={23} color="black"/>
     </Link>
     </div>
