@@ -1,13 +1,13 @@
-// components/Organizations.tsx
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { PacmanLoader } from "react-spinners";
 import OrganizationCard from "@/components/main/OrganizationCard";
 import { RoughNotation } from "react-rough-notation";
 import { Technologies } from "@/utils/technologies";
 import Pagination from "@/components/main/Pagination";
+import debounce from 'lodash/debounce';
 
 
 interface Organization {
@@ -26,11 +26,14 @@ const Organizations = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [technologyFilter, setTechnologyFilter] = useState<string>("all");
     const [yearFilter, setYearFilter] = useState<string>("all");
-    
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(12);
+    const searchInputRef = useRef<HTMLInputElement | null>(null);
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const fetchData = async () => {
+
+
+   const fetchData = async () => {
       setLoading(true);
       try{
          const res = await axios.get(
@@ -44,25 +47,62 @@ const Organizations = () => {
        setLoading(false);
       };
     }
-    
+
     useEffect(() => {
-    console.log("Effect Rendered");
+    console.log("Initial Fetch Effect Rendered");
     
     fetchData();
-  }, [technologyFilter, yearFilter, currentPage]);
+  }, [technologyFilter, yearFilter]);
 
 
+   const debouncedFetchData = useCallback(
+    debounce(async () => {
+      setLoading(true);
+      try{
+         const res = await axios.get(
+            `/api/orgs-data?technology=${technologyFilter}&year=${yearFilter}`
+          );
+           setData(res.data);
+  
+      } catch(err){
+            console.log(err);
+      } finally {
+       setLoading(false);
+      };
+    }, 300) // Adjust debounce delay as needed
+, [technologyFilter, yearFilter])
 
+  const handleSearch = () => {
+        if(searchInputRef.current) {
+            setSearchTerm(searchInputRef.current.value);
+        }
+        debouncedFetchData();
+       
+  };
+  
   const handlePageChange = (page: number) => {
      setCurrentPage(page);
   };
+
+    const filteredData = data.filter((item) => {
+        if (!searchTerm) {
+              return true;
+            }
+        const searchLower = searchTerm.toLowerCase();
+        const nameLower = item.Name.toLowerCase();
+        const descriptionLower = item.Description.toLowerCase();
+
+        return (
+         nameLower.includes(searchLower) || descriptionLower.includes(searchLower)
+            );
+  });
   
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentOrgs = data.slice(indexOfFirstItem, indexOfLastItem)
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-    
+    const currentOrgs = filteredData.slice(indexOfFirstItem, indexOfLastItem)
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+    
   return loading ? (
     <div className="w-full h-screen flex justify-center items-center">
       <PacmanLoader
@@ -72,12 +112,12 @@ const Organizations = () => {
       />
     </div>
   ) : (
-    <main className="max-w-[95%] mx-auto py-10 ">
-      <div>
-        <h1 className="text-7xl font-extrabold text-left mt-4 ">
+    <main className="max-w-[95%] mx-auto pb-10 pt-4 ">
+      <div className="">
+        <h1 className="text-7xl font-extrabold text-left  ">
           Organizations
         </h1>
-        <p className=" mt-3 text-lg font-mono">
+        <p className=" mt-3 mb-3 text-lg font-mono">
           Find the best{" "}
           <RoughNotation type="underline" show={true}>
             organizations
@@ -85,7 +125,19 @@ const Organizations = () => {
           to work on.
         </p>
       </div>
-      <div className="mt-5 w-full flex justify-start gap-3 ">
+    <div className="mt-5 w-full flex flex-row justify-between items-center gap-3 ">
+      <div className="flex gap-3 font-bold">
+
+        <input
+            type="text"
+            placeholder="Search organizations..."
+            className="p-2 border border-[#dbbb84]  rounded-md bg-[#FEE8C2]  text-black"
+            ref={searchInputRef}
+            />
+         <button onClick={handleSearch} className="bg-[#dbbb84] hover:bg-[#c89d54] transition-colors duration-300 text-sm  text-black rounded-md px-5">Search</button>
+            </div>
+         <div className="flex gap-3">
+
         <select onChange={(e) => setTechnologyFilter(e.target.value)} name="Technologies" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]" value={technologyFilter}>
           <option value="all">Select Technology</option>
           {Technologies.map((item, idx) => (
@@ -106,6 +158,7 @@ const Organizations = () => {
           <option value="2023">2023</option>
           <option value="2024">2024</option>
         </select>
+         </div>
       </div>
       <div className=" py-10 flex flex-wrap gap-7 h-fit justify-center">
         {currentOrgs &&

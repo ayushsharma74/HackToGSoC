@@ -7,9 +7,12 @@ import { parse } from "csv-parse/sync";
 export async function GET(req: NextRequest ){
     const { searchParams } = new URL(req.url);
     const title = searchParams.get("title")
-    const filePath = path.join(process.cwd(), 'public', 'gsoc-orgs-with-years.csv');
+    const filePath = path.join(process.cwd(), 'public', 'combined_projects.json');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const data: any[] = parse(fileContent, { columns: true });
+    const data = JSON.parse(fileContent);
+    const projects = []
+    console.log(data);
+    
     let Description: string | null = null;
 
 
@@ -20,15 +23,16 @@ export async function GET(req: NextRequest ){
     }
     
     for (const item of data) {
-        if (item.Name === title) {
-             Description = item.Description;
+        if (item.name === title) {
+             Description = item.description;
+             projects.push(item.projects);
              break;
         }
     }
     
     if(Description){
         console.log(Description);
-         return NextResponse.json({ Description });
+         return NextResponse.json({ Description , projects});
     }else{
         return NextResponse.json({ Description: "No Description found for the given title."}, {status:404});
     }
