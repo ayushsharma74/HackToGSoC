@@ -6,11 +6,11 @@ import React, { use, useEffect, useState } from "react";
 import { FaLink, FaCode } from "react-icons/fa";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-const Org = ({ params }: { params: { org: string } }) => {
+const Org = ({ params }: any) => {
   const [description, setDescription] = useState("");
   const [projectsByYear, setProjectsByYear] = useState<{ [year: string]: any[] }>({});
   const [loading, setLoading] = useState(true);
-  const slug = use(params);
+  const slug:any = use(params);
 
   useEffect(() => {
     console.log(slug.org);
