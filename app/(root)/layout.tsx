@@ -4,6 +4,8 @@ import "@/styles/globals.css";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 import { Jura } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
+
 const jura = Jura({
   weight: "400",
   style: "normal",
@@ -21,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GsocZilla",
+  title: "HackToGSoC",
   description: "An app to simplify gsoc contributions",
 };
 
@@ -32,6 +34,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Analytics />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jura.className} antialiased`}
       >
