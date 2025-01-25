@@ -14,7 +14,7 @@ interface Organization {
     Description: string;
     Technologies?: string; // Changed Languages to Technologies
     Topics: string;
-    "github": string;
+    "github"?: string;
     URL: string;
     years: string;
 }
