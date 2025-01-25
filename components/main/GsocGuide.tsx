@@ -3,48 +3,66 @@ import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const CodeBlock = ({ language, value }) => {
+interface CodeBlockProps {
+    language: string;
+    value: string;
+  }
+  
+  const CodeBlock: React.FC<CodeBlockProps> = ({ language, value }) => {
+      return (
+        <SyntaxHighlighter language={language} style={dracula}>
+          {value}
+        </SyntaxHighlighter>
+      );
+  };
+  
+  interface ListItemProps {
+      children: React.ReactNode | React.ReactNode[];
+  }
+  const ListItem: React.FC<ListItemProps> = ({ children }) => {
+    if (Array.isArray(children)) {
+      return (
+          <ul className='list-disc pl-5 mb-2'>
+              {children.map((item, index) => (
+                  <li key={index} className='mb-1'>
+                      {item}
+                  </li>
+              ))}
+          </ul>
+      );
+  }
+    return <li className='mb-1'>{children}</li>;
+  };
+  
+  
+  interface SubSectionProps {
+      title?: string;
+      children: React.ReactNode;
+  }
+  
+  const SubSection: React.FC<SubSectionProps> = ({ title, children }) => {
+      return (
+          <div className="mb-5 ml-4">
+              {title && <h3 className='border-b pb-1 font-medium'>{title}</h3>}
+              {children}
+          </div>
+      );
+  };
+  
+  
+  interface SectionProps {
+      title?: string;
+      children: React.ReactNode;
+  }
+  
+  const Section: React.FC<SectionProps> = ({ title, children }) => {
     return (
-      <SyntaxHighlighter language={language} style={dracula}>
-        {value}
-      </SyntaxHighlighter>
+      <div className="mb-10">
+        {title && <h2 className='border-b pb-2 mb-4 font-semibold'>{title}</h2>}
+        {children}
+      </div>
     );
-};
-
-const ListItem = ({ children }) => {
-  if (Array.isArray(children)) {
-    return (
-        <ul className='list-disc pl-5 mb-2'>
-            {children.map((item, index) => (
-                <li key={index} className='mb-1'>
-                    {item}
-                </li>
-            ))}
-        </ul>
-    );
-}
-  return <li className='mb-1'>{children}</li>;
-};
-
-
-const SubSection = ({ title, children }) => {
-    return (
-        <div className="mb-5 ml-4">
-            {title && <h3 className='border-b pb-1 font-medium'>{title}</h3>}
-            {children}
-        </div>
-    );
-};
-
-
-const Section = ({ title, children }) => {
-  return (
-    <div className="mb-10">
-      {title && <h2 className='border-b pb-2 mb-4 font-semibold'>{title}</h2>}
-      {children}
-    </div>
-  );
-};
+  };
 
 
 const GSOCGuide = () => {
