@@ -6,6 +6,7 @@ import Footer from "@/components/main/Footer";
 import { Jura } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react"
 
+
 const jura = Jura({
   weight: "400",
   style: "normal",
@@ -38,6 +39,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${jura.className} antialiased`}
       >
+
         <Navbar />
         {children}
 

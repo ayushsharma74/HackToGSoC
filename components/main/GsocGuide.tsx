@@ -73,21 +73,21 @@ const GSOCGuide = () => {
                 Google Summer of Code (GSoC)
              </Link>
            </h1>
-           <hr className="border-t border-gray-300 my-4" />
+           <hr className=" my-4" />
 
              <Section title="Fundamental Knowledge">
             <SubSection title="What is Open Source?">
                 <div >
-                    <h4 className='border-b pb-1 font-medium'>1. Source Code Availability:</h4>
+                    <h4 className=' pb-1 font-medium'>1. Source Code Availability:</h4>
                     <p className='mb-4'>
                         The source code of the software is freely accessible. This allows anyone to inspect how the software works, modify it to suit their needs, and share those modifications with others.
                     </p>
-                     <h4 className='border-b pb-1 font-medium'>2. Licensing:</h4>
+                     <h4 className=' pb-1 font-medium'>2. Licensing:</h4>
                     <p className='mb-4'>
                         Open source software is typically distributed under licenses that comply with the Open Source Definition. These licenses grant users the rights to use, modify, and distribute the software.
                     </p>
                     <p className='mb-4'>
-                         <a href="https://en.wikipedia.org/wiki/List_of_free-and-open-source_software_packages" target="_blank" rel="noopener noreferrer">
+                         <a href="https://en.wikipedia.org/wiki/List_of_free-and-open-source_software_packages" target="_blank">
                              List of Free and Open Source Softwares
                          </a>
                     </p>

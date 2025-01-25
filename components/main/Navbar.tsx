@@ -18,7 +18,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="px-4 py-2 bg-[#FEE8C2] flex justify-between items-center border-b border-[#dbbb84] relative">
+        <nav className="px-4 py-2 bg-[#FEE8C2] flex justify-between items-center relative">
             <div className={`${jura.className} flex items-center gap-6 justify-center`}>
                 <Link href={'/'} className={`${jura.className} hover:underline  text-black text-2xl`}>
                     <span className='font-bold flex gap-2 items-center'>HackToGSoC <IoRocketOutline size={22} /> </span>
@@ -42,7 +42,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     href={"/roadmap"}
-                    className={`text-black hover:underline font-semibold ${pathname === '/issues' ? 'underline' : ''} `}
+                    className={`text-black hover:underline font-semibold ${pathname === '/roadmap' ? 'underline' : ''} `}
                 >
                     Roadmap
                 </Link>
