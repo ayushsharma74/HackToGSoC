@@ -8,6 +8,7 @@ import { RoughNotation } from "react-rough-notation";
 import { Technologies } from "@/utils/technologies";
 import Pagination from "@/components/main/Pagination";
 import debounce from 'lodash/debounce';
+import { Gallery } from "@/components/ui/Gallery";
 
 interface Organization {
   "Image URL": string;
@@ -170,7 +171,7 @@ const Organizations = () => {
         </select>
          </div>
       </div>
-        <div className={` py-10 flex flex-wrap gap-7 h-fit ${showNoOrgsFound ? 'h-screen' : ''} justify-center`}>
+        <Gallery>
             {showNoOrgsFound ? (
                 <h1 className="font-bold">No Organizations Found</h1>
             ) : (
@@ -179,7 +180,7 @@ const Organizations = () => {
                   )) 
              ) }
            
-         </div>
+         </Gallery>
     {showPagination &&(
           <div className="font-bold">
              <Pagination 

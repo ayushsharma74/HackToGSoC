@@ -57,7 +57,7 @@ const OrganizationCard: React.FC<{ item: Organization }> = ({ item }) => {
     };
 
   return (
-    <div className='border border-[#dbbb84] flex flex-col w-80 px-5 mx-1 justify-between pt-4 pb-3 gap-9 rounded-md'>
+    <div className='border border-[#dbbb84] h-fit flex flex-col w-80 px-5 mx-1 justify-between pt-4 pb-3 gap-9 rounded-md'>
       <div className='section1'>
         <div className='flex justify-between items-start'>
           <div className='w-14 h-12 rounded-md mb-3'>
