@@ -52,7 +52,7 @@ const Navbar = () => {
               {/* Mobile Navigation Links */}
               <div
                 className={`${
-                isMenuOpen ? "absolute top-full left-0 w-full bg-[#FEE8C2] flex flex-col p-4 border-t border-[#dbbb84] z-50" : "hidden"
+                isMenuOpen ? "absolute top-full left-0 w-full bg-[#FEE8C2] flex flex-col p-4 border-b border-[#dbbb84] z-50" : "hidden"
                 }   md:hidden `}
 
             >

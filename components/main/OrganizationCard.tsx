@@ -14,7 +14,7 @@ interface Organization {
     Description: string;
     Technologies?: string;
     Topics: string;
-    "github"?: string;
+    "GitHub URL"?: string;
     URL: string;
     years: string;
 }
@@ -102,13 +102,13 @@ const OrganizationCard: React.FC<{ item: Organization }> = ({ item }) => {
       </div>
       <div className='sectionforlinks flex justify-end'>
         <div className='flex gap-2'>
-          <Link
-            href={item["github"] || "https://www.github.com"}
+        {item["GitHub URL"] === "Not Found" ? null : <Link
+            href={item["GitHub URL"] || "#"}
             target='_blank'
             className='rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300'
           >
-            <FaGithub size={25} />
-          </Link>
+             <FaGithub size={25} />
+          </Link>}
           <Link
             href={item["URL"]}
             target='_blank'

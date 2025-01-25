@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const technologyFilter = searchParams.get("technology");
     const yearFilter = searchParams.get("year");
-    const filePath = path.join(process.cwd(), 'public', 'gsoc-orgs-with-years-git01.csv');
+    const filePath = path.join(process.cwd(), 'public', 'updated_gsoc.csv');
 
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     let data: any[] = parse(fileContent, { columns: true });
