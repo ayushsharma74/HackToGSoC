@@ -79,7 +79,6 @@ const OrganizationCard: React.FC<{ item: Organization }> = ({ item }) => {
         <Link
           href={`/organizations/${encodeURIComponent(item["Name"])}`}
           className='font-extrabold text-2xl mb-1 underline hover:no-underline transition-all'
-          target='_blank'
         >
           {item["Name"]}
         </Link>

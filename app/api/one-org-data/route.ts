@@ -23,7 +23,7 @@ export async function GET(req: NextRequest ){
     }
     
     for (const item of data) {
-        if (item.name === title) {
+        if (item.name.toLowerCase() === title.toLowerCase()) {
              Description = item.description;
              projects.push(item.projects);
              break;
