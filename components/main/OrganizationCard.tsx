@@ -12,7 +12,7 @@ interface Organization {
     "Image URL": string;
     Name: string;
     Description: string;
-    Technologies?: string; // Changed Languages to Technologies
+    Technologies?: string;
     Topics: string;
     "github"?: string;
     URL: string;

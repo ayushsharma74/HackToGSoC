@@ -6,7 +6,7 @@ import Footer from "@/components/main/Footer";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "GsocZilla | Dashboard",
+  title: "HackToGSoC | Dashboard",
   description: "An app to simplify gsoc contributions",
 };
 
