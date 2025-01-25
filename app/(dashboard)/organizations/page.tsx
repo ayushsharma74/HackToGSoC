@@ -9,7 +9,6 @@ import { Technologies } from "@/utils/technologies";
 import Pagination from "@/components/main/Pagination";
 import debounce from 'lodash/debounce';
 
-
 interface Organization {
   "Image URL": string;
   Name: string;
@@ -30,35 +29,32 @@ const Organizations = () => {
     const [itemsPerPage] = useState(12);
     const searchInputRef = useRef<HTMLInputElement | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>("");
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>("");
 
-
-
-   const fetchData = async () => {
-      setLoading(true);
-      try{
-         const res = await axios.get(
-             `/api/orgs-data?technology=${technologyFilter}&year=${yearFilter}`
-          );
-           setData(res.data);
-  
-      } catch(err){
-            console.log(err);
-      } finally {
-       setLoading(false);
-      };
-    }
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const res = await axios.get(
+                `/api/orgs-data?technology=${technologyFilter}&year=${yearFilter}`
+            );
+            setData(res.data);
+        } catch (err) {
+            console.error("Error fetching data:", err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-    console.log("Initial Fetch Effect Rendered");
-    
-    fetchData();
-  }, [technologyFilter, yearFilter]);
+        console.log("Initial Fetch Effect Rendered");
+        fetchData();
+    }, [technologyFilter, yearFilter]);
 
 
    const debouncedFetchData = useCallback(
     debounce(async () => {
-      setLoading(true);
-      try{
+        setLoading(true);
+        try{
          const res = await axios.get(
             `/api/orgs-data?technology=${technologyFilter}&year=${yearFilter}`
           );
@@ -72,17 +68,23 @@ const Organizations = () => {
     }, 300) // Adjust debounce delay as needed
 , [technologyFilter, yearFilter])
 
+
   const handleSearch = () => {
         if(searchInputRef.current) {
             setSearchTerm(searchInputRef.current.value);
+             setDebouncedSearchTerm(searchInputRef.current.value);
         }
-        debouncedFetchData();
-       
+       setCurrentPage(1);
   };
-  
-  const handlePageChange = (page: number) => {
-     setCurrentPage(page);
-  };
+   useEffect(() => {
+    debouncedFetchData();
+}, [debouncedSearchTerm, debouncedFetchData]);
+
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const filteredData = data.filter((item) => {
         if (!searchTerm) {
@@ -99,10 +101,17 @@ const Organizations = () => {
   
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentOrgs = filteredData.slice(indexOfFirstItem, indexOfLastItem)
+    const currentOrgs = filteredData.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+    const showNoOrgsFound = filteredData.length === 0;
+    const showPagination = !showNoOrgsFound && totalPages > 1;
     
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
   return loading ? (
     <div className="w-full h-screen flex justify-center items-center">
       <PacmanLoader
@@ -132,7 +141,8 @@ const Organizations = () => {
             type="text"
             placeholder="Search organizations..."
             className="p-2 border border-[#dbbb84]  rounded-md bg-[#FEE8C2]  text-black"
-            ref={searchInputRef}
+             ref={searchInputRef}
+           onKeyDown={handleKeyDown}
             />
          <button onClick={handleSearch} className="bg-[#dbbb84] hover:bg-[#c89d54] transition-colors duration-300 text-sm  text-black rounded-md px-5">Search</button>
             </div>
@@ -160,20 +170,25 @@ const Organizations = () => {
         </select>
          </div>
       </div>
-      <div className=" py-10 flex flex-wrap gap-7 h-fit justify-center">
-        {currentOrgs &&
-          currentOrgs?.map((item, idx) => (
-            <OrganizationCard key={idx} item={item} />
-          ))}
-      </div>
-        <div className="font-bold">
-
-        <Pagination 
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
+        <div className={` py-10 flex flex-wrap gap-7 h-fit ${showNoOrgsFound ? 'h-screen' : ''} justify-center`}>
+            {showNoOrgsFound ? (
+                <h1 className="font-bold">No Organizations Found</h1>
+            ) : (
+                 currentOrgs.map((item, idx) => (
+                   <OrganizationCard key={idx} item={item} />
+                  )) 
+             ) }
+           
+         </div>
+    {showPagination &&(
+          <div className="font-bold">
+             <Pagination 
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
             />
-            </div>
+         </div>
+       )}
     </main>
   );
 };

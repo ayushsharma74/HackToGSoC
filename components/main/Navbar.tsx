@@ -36,7 +36,7 @@ const Navbar = () => {
       </div>
     <div className="flex gap-2 items-center ">
     <Link href={"https://github.com/ayushsharma74/codezilla"} target="_blank" className="rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300 flex gap-2 font-bold">
-    <h1> Star this Project </h1>
+    <h1 className='hidden md:block lg:block'> Star this Project </h1>
      <FaGithub size={23} color="black"/>
     </Link>
     </div>

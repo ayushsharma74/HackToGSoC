@@ -10,10 +10,9 @@ const Org = ({ params }: any) => {
   const [description, setDescription] = useState("");
   const [projectsByYear, setProjectsByYear] = useState<{ [year: string]: any[] }>({});
   const [loading, setLoading] = useState(true);
-  const slug:any = use(params);
+  const slug: any = use(params);
 
   useEffect(() => {
-    console.log(slug.org);
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -41,6 +40,9 @@ const Org = ({ params }: any) => {
     fetchData();
   }, [slug.org]);
 
+  const sortedYearEntries = Object.entries(projectsByYear)
+    .sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA));
+
   return (
     <main className="max-w-[90%] mx-auto h-fit pb-6">
       <div className="text-black mt-5 border-b border-[#dbbb84]">
@@ -59,7 +61,7 @@ const Org = ({ params }: any) => {
           <PacmanLoader size={20} loading={loading} color="black" />
         </div>
       ) : (
-        Object.entries(projectsByYear).map(([year, projects], index) => (
+           sortedYearEntries.map(([year, projects], index) => (
           <div key={index} className="year-section">
             <h2 className="text-3xl font-semibold my-3">{year}</h2>
             <div className="flex gap-5 flex-wrap">

@@ -16,7 +16,7 @@ const Footer = (props: Props) => {
   return (
     <footer className={` ${jura.className} flex justify-between bg-[#FEE8C2] px-3 py-2`}>
       <p className="text-black font-semibold flex gap-1">
-        Brought to you by <Link href={props.twitterUrl}><span className="underline hover:no-underline">ayush</span></Link>
+        Brought to you by <Link href={props.twitterUrl}><span className="underline hover:no-underline">ayush</span></Link> & <Link href={"https://x.com/Averrraagggeeee"}><span className="underline hover:no-underline">gajender</span></Link>
       </p>
       <div className="flex gap-3">
         <Link href={props.githubUrl} className="hover:scale-125 transition-all" target="_blank">

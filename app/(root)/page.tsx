@@ -14,8 +14,8 @@ export default function Home() {
     <main
       className={` h-screen bg-[#FEE8C2] w-full flex justify-center items-center`}
     >
-      <div className="text-black text-center flex gap-4 flex-col items-center  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 className="text-6xl font-semibold"><BlurFade>Kyu nhi ho raha<RoughNotation type="underline" show={true}> GSoC?</RoughNotation></BlurFade></h1>
+      <div className="text-black text-center flex gap-4 flex-col items-center w-80 md:w-fit lg:w-fit  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 className="lg:text-6xl md:text-4xl text-5xl font-semibold"><BlurFade>Kyu nhi ho raha<RoughNotation type="underline" show={true}> GSoC?</RoughNotation></BlurFade></h1>
         <h1>Filter - Bookmark - Contribute - Win</h1>
         <Link href="/organizations" className="relative inline-block text-lg group">
           <span className="relative z-10 block px-4 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
