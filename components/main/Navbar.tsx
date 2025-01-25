@@ -81,7 +81,7 @@ const Navbar = () => {
 
              <div className="flex gap-2 items-center ">
                 <Link
-                    href={"https://github.com/ayushsharma74/codezilla"}
+                    href={"https://github.com/ayushsharma74/HackToGSoC"}
                     target="_blank"
                     className="rounded-md bg-[#FEE8C2] border-zinc-800 p-2 hover:bg-[#dec9a5] transition-colors duration-300 flex gap-2 font-bold"
                 >
