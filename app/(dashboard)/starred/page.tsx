@@ -39,8 +39,8 @@ const Starred = () => {
     <main className={`max-w-[95%] mx-auto ${bookmarkedOrgs.length === 0 ? 'h-screen' : ''}`} >
       <div className=''>
 
-      <h1 className='text-7xl font-extrabold mt-4'>Starred</h1>
-      <p className='text-xl font-mono mb-2'> <RoughNotation type="underline" show={true}>Contribute</RoughNotation> karne ka irada hai? ya sirf save hi karna hai </p>
+      <h1 className='text-4xl md:text-7xl font-extrabold mt-4'>Starred</h1>
+      <p className='md:text-lg font-mono mb-2'> <RoughNotation type="underline" show={true}>Contribute</RoughNotation> karne ka irada hai? ya sirf save hi karna hai </p>
       </div>
       <div>
         <div className='py-10 flex flex-wrap gap-7 h-fit justify-center'>

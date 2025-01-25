@@ -1,4 +1,3 @@
-// components/Pagination.tsx
 "use client";
 
 import React from 'react';
@@ -43,8 +42,8 @@ const Pagination: React.FC<PaginationProps> = ({
                pageNumbers.push(i);
            }
        }
-      
-    
+
+
 
     const handlePrevPage = () => {
         if (currentPage > 1) {
@@ -60,65 +59,65 @@ const Pagination: React.FC<PaginationProps> = ({
 
 
     return (
-        <nav className="  transition-all duration-300 ease-in-out flex justify-center items-center mt-4">
-             <button
-                 onClick={handlePrevPage}
-                 disabled={currentPage === 1}
-                  className={`px-3 py-1 mx-1 rounded-md  ${
-                  currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#FEE8C2] hover:bg-[#dbbb84]'
-                    }`}
-                 >
-                 Previous
-             </button>
+       <nav className="transition-all duration-300 ease-in-out flex justify-center items-center mt-4">
+            <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className={`px-2 py-1 mx-1 rounded-md text-sm md:text-base ${
+                    currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#FEE8C2] hover:bg-[#dbbb84]'
+                }`}
+            >
+                Previous
+            </button>
 
-              <ul className="flex items-center justify-center space-x-2">
-               {totalPages > maxPagesToShow && startPage > 1 && (
+            <ul className="flex items-center justify-center space-x-1 md:space-x-2">
+                {totalPages > maxPagesToShow && startPage > 1 && (
                     <li>
                         <button
                             onClick={() => onPageChange(1)}
-                             className={`px-3 py-1 rounded-md transition-colors duration-300 bg-gray-100 hover:bg-gray-200 text-gray-800`}
-                             >
+                            className={`px-2 py-1 rounded-md text-sm md:text-base transition-colors duration-300 bg-gray-100 hover:bg-gray-200 text-gray-800`}
+                        >
                             1
-                         </button>
-                         {startPage > 2 && <span className="mx-1">...</span>}
-                     </li>
+                        </button>
+                         {startPage > 2 && <span className="mx-1 text-sm md:text-base">...</span>}
+                    </li>
                 )}
                 {pageNumbers.map((page) => (
-                     <li key={page}>
-                          <button
-                                onClick={() => onPageChange(page)}
-                                 className={`px-3 py-1 rounded-md transition-colors duration-300 ${
+                    <li key={page}>
+                        <button
+                            onClick={() => onPageChange(page)}
+                            className={`px-2 py-1 rounded-md text-sm md:text-base transition-colors duration-300 ${
                                 currentPage === page
-                                     ? "bg-[#dbbb84] text-white"
+                                    ? "bg-[#dbbb84] text-white"
                                     : "bg-gray-100 hover:bg-gray-200 text-gray-800"
-                                }`}
-                                 >
+                            }`}
+                        >
                             {page}
                         </button>
-                 </li>
-                  ))}
+                    </li>
+                ))}
 
-                 {totalPages > maxPagesToShow && endPage < totalPages && (
-                  <li>
-                        {endPage < totalPages -1 && <span className="mx-1">...</span>}
+                {totalPages > maxPagesToShow && endPage < totalPages && (
+                    <li>
+                        {endPage < totalPages -1 && <span className="mx-1 text-sm md:text-base">...</span>}
                         <button
-                             onClick={() => onPageChange(totalPages)}
-                              className={`px-3 py-1 rounded-md transition-colors duration-300 bg-gray-100 hover:bg-gray-200 text-gray-800`}
-                              >
-                           {totalPages}
-                         </button>
-                 </li>
+                            onClick={() => onPageChange(totalPages)}
+                             className={`px-2 py-1 rounded-md text-sm md:text-base transition-colors duration-300 bg-gray-100 hover:bg-gray-200 text-gray-800`}
+                        >
+                            {totalPages}
+                        </button>
+                    </li>
                 )}
-             </ul>
+            </ul>
 
-             <button
+            <button
                 onClick={handleNextPage}
-                 disabled={currentPage === totalPages}
-                  className={`ml-2 transition-all duration-300 ease-in-out px-3 py-1 mx-1 rounded-md  ${
-                        currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#FEE8C2] hover:bg-[#dbbb84]'
-                   }`}
-                 >
-               Next
+                disabled={currentPage === totalPages}
+                className={`ml-1 md:ml-2 transition-all duration-300 ease-in-out px-2 py-1 rounded-md text-sm md:text-base ${
+                    currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#FEE8C2] hover:bg-[#dbbb84]'
+                }`}
+            >
+                Next
             </button>
         </nav>
     );

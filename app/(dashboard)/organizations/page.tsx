@@ -123,10 +123,10 @@ const Organizations = () => {
   ) : (
     <main className="max-w-[95%] mx-auto pb-10 pt-4 ">
       <div className="">
-        <h1 className="text-7xl font-extrabold text-left  ">
+        <h1 className="text-4xl md:text-7xl font-extrabold text-left  ">
           Organizations
         </h1>
-        <p className=" mt-3 mb-3 text-lg font-mono">
+        <p className=" mt-3 mb-3 text-base md:text-lg font-mono">
           Find the best{" "}
           <RoughNotation type="underline" show={true}>
             organizations
@@ -134,21 +134,21 @@ const Organizations = () => {
           to work on.
         </p>
       </div>
-    <div className="mt-5 w-full flex flex-row justify-between items-center gap-3 ">
-      <div className="flex gap-3 font-bold">
+    <div className="mt-5 w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-3 ">
+      <div className="flex flex-row  gap-3 font-bold">
 
         <input
             type="text"
             placeholder="Search organizations..."
-            className="p-2 border border-[#dbbb84]  rounded-md bg-[#FEE8C2]  text-black"
+             className="p-2 border border-[#dbbb84]  rounded-md bg-[#FEE8C2]  text-black w-full md:w-auto"
              ref={searchInputRef}
-           onKeyDown={handleKeyDown}
+             onKeyDown={handleKeyDown}
             />
          <button onClick={handleSearch} className="bg-[#dbbb84] hover:bg-[#c89d54] transition-colors duration-300 text-sm  text-black rounded-md px-5">Search</button>
             </div>
-         <div className="flex gap-3">
+         <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
 
-        <select onChange={(e) => setTechnologyFilter(e.target.value)} name="Technologies" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]" value={technologyFilter}>
+        <select onChange={(e) => setTechnologyFilter(e.target.value)} name="Technologies" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2] w-full md:w-auto" value={technologyFilter}>
           <option value="all">Select Technology</option>
           {Technologies.map((item, idx) => (
             <option key={idx} value={item}>
@@ -156,7 +156,7 @@ const Organizations = () => {
             </option>
           ))}
         </select>
-        <select onChange={(e) => setYearFilter(e.target.value)} name="years" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2]" value={yearFilter}>
+        <select onChange={(e) => setYearFilter(e.target.value)} name="years" id="" className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2] w-full md:w-auto" value={yearFilter}>
           <option value="all">Select Year</option>
           <option value="2016">2016</option>
           <option value="2017">2017</option>
