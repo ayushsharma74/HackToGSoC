@@ -146,7 +146,7 @@ const GSOCGuide = () => {
                     <li className='mb-1'><b>Teamwork</b>: Capable of working both independently and collaboratively in a team.</li>
                     <li className='mb-1'><b>Effective Communication</b>: Ability to communicate clearly and effectively.</li>
                     <li className='mb-1'><b>Asking Questions</b>: Know when to ask questions to clarify doubts or issues.</li>
-                    <li className='mb-1'><b>Respect for Others</b>: Respect and consider other people's opinions and feedback.</li>
+                    <li className='mb-1'><b>Respect for Others</b>: Respect and consider other people&lsquo;s opinions and feedback.</li>
                 </ul>
             </SubSection>
 
@@ -232,8 +232,8 @@ const GSOCGuide = () => {
 
                          <ul className='list-disc pl-5 mb-2'>
                             <li className='mb-1'><b>Be Clear and Concise</b>: Summarize the changes in the subject line and provide additional details in the body if necessary.</li>
-                            <li className='mb-1'><b>Use the Imperative Mood</b>: Write the subject line as if you're giving an order, e.g., "Fix bug" instead of "Fixed bug".</li>
-                           <li className='mb-1'><b>Reference Issues</b>: If applicable, reference the issue number that the commit addresses, e.g., "Fix login issue #123".</li>
+                            <li className='mb-1'><b>Use the Imperative Mood</b>: Write the subject line as if you&lsquo;re giving an order, e.g., &quot;Fix bug&quot; instead of &quot;Fixed bug&quot;.</li>
+                           <li className='mb-1'><b>Reference Issues</b>: If applicable, reference the issue number that the commit addresses, e.g., &quot;Fix login issue #123&quot;.</li>
                             <li className='mb-1'><b>Separate Concerns</b>: Make sure each commit contains related changes and is not too large. This makes it easier to review and revert if necessary.</li>
                          </ul>
           </SubSection>
@@ -402,7 +402,7 @@ const GSOCGuide = () => {
                                  <b>Google Summer of Code (GSoC) Website</b>
                             </a>
                              <ul className='list-disc pl-5 mb-2'>
-                                  <li className='mb-1'>Explore organizations that work on technologies you're passionate about.</li>
+                                  <li className='mb-1'>Explore organizations that work on technologies you&lsquo;re passionate about.</li>
                                    <li className='mb-1'>Search for projects aligned with your interests and skills.</li>
                              </ul>
                          </li>
@@ -419,7 +419,7 @@ const GSOCGuide = () => {
                             <b>GitHub Issues</b>
                         </a>
                            <ul className='list-disc pl-5 mb-2'>
-                              <li className='mb-1'> Use GitHub's powerful issue search tool to find projects with good first issues or specific topics.</li>
+                              <li className='mb-1'> Use GitHub&lsquo;s powerful issue search tool to find projects with good first issues or specific topics.</li>
                             </ul>
                         </li>
                         <li className='mb-1'>
@@ -508,7 +508,7 @@ const GSOCGuide = () => {
                       <b>Open Source Guides</b>:
                          <ul className='list-disc pl-5 mb-2'>
                              <li className='mb-1'>
-                                Visit freeCodeCamp's guide on
+                                Visit freeCodeCamp&lsquo;s guide on
                                  <a href="https://github.com/freeCodeCamp/how-to-contribute-to-open-source" target="_blank" rel="noopener noreferrer">
                                         how to contribute to open source
                                   </a>
@@ -530,7 +530,7 @@ const GSOCGuide = () => {
                            <a href="https://summerofcode.withgoogle.com/" target="_blank" rel="noopener noreferrer">
                                Google Summer of Code Official Website
                            </a>
-                         to understand the program's structure, goals, and timelines.
+                         to understand the program&lsquo;s structure, goals, and timelines.
                     </li>
                      <li className='mb-1'>
                          <b>Attend the Weekly Calls and Chats</b>: Get yourself familiar with the server,chat with fellow members to discuss GSOC approaches and collaboration for project ideas, also attend the weekly calls to connect with past participants and mentors.
@@ -540,7 +540,7 @@ const GSOCGuide = () => {
            <SubSection title="2. Skill Development (July - September)">
                     <ul className='list-disc pl-5 mb-2'>
                          <li className='mb-1'><b>Identify Your Strengths and Weaknesses</b>: Determine which programming languages and frameworks you need to improve.</li>
-                         <li className='mb-1'><b>Learn the Basics</b>: If you're new to open source, learn about version control systems like Git and collaboration tools like GitHub or GitLab.</li>
+                         <li className='mb-1'><b>Learn the Basics</b>: If you&lsquo;re new to open source, learn about version control systems like Git and collaboration tools like GitHub or GitLab.</li>
                           <li className='mb-1'>
                               <b>Practice Coding</b>: Work on coding challenges on platforms like
                             <a href="https://www.leetcode.com" target="_blank" rel="noopener noreferrer">
@@ -616,9 +616,9 @@ const GSOCGuide = () => {
                       <li className='mb-1'><b>Identify Potential Projects</b>: Review the list of projects proposed by the organizations.</li>
                       <li className='mb-1'><b>Draft Proposal</b>: Start drafting your project proposal. Include details like project objectives, timeline (Make sure to add timeline that fits according to your scenario), milestones, and your approach.</li>
                        <li className='mb-1'>
-                           <b>Seek Feedback</b>: Share your draft with mentors and the community for feedback. Refine your proposal based on their suggestions. DO NOT send your proposal without acceptance from mentors you'll be immediatly rejected
+                           <b>Seek Feedback</b>: Share your draft with mentors and the community for feedback. Refine your proposal based on their suggestions. DO NOT send your proposal without acceptance from mentors you&lsquo;ll be immediatly rejected
                        </li>
-                       <li className='mb-1'><b>Prepare Backup Proposals</b>: It's a good idea to have more than one proposal in case your primary proposal is not selected.</li>
+                       <li className='mb-1'><b>Prepare Backup Proposals</b>: It&lsquo;s a good idea to have more than one proposal in case your primary proposal is not selected.</li>
                   </ul>
             </SubSection>
             <SubSection title="6. Application Phase (March - April)">
