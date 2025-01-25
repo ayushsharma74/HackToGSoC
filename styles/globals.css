@@ -6,6 +6,18 @@
     background-color: #efbc64;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 7px;
+    background-color: #FEE8C2;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #f5d398;
+    border-radius: 10px;
+}
+
 @layer base {
   :root {
         --background: 0 0% 100%;
