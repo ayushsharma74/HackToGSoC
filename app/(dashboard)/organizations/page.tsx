@@ -173,7 +173,7 @@ const Organizations = () => {
           <input
             type="text"
             placeholder="Search organizations..."
-            className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2] text-black w-full md:w-auto"
+            className="p-2 border border-[#dbbb84] rounded-md bg-[#FEE8C2] text-black w-full md:w-auto placeholder:text-[#535353]"
             ref={searchInputRef}
             defaultValue={searchTerm}
             onKeyDown={handleKeyDown}
