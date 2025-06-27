@@ -23,7 +23,7 @@ export default function RootLayout({
       <main className={`${jura.className} bg-[#FEE8C2] h-fit `} >
         <Navbar />
         {children}
-        <Footer twitterUrl="https://x.com/ayushon_twt" discordUrl="#" githubUrl="https://github.com/ayushsharma74" />
+        <Footer twitterUrl="https://x.com/ayshtwt" discordUrl="#" githubUrl="https://github.com/ayushsharma74" />
       </main>
         </body>
       </html>
