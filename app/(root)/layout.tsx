@@ -43,7 +43,7 @@ export default async function RootLayout({
         <Navbar />
         {children}
 
-        <Footer twitterUrl="https://x.com/ayushon_twt" discordUrl="#" githubUrl="https://github.com/ayushsharma74" />
+        <Footer twitterUrl="https://x.com/ayshtwt" discordUrl="#" githubUrl="https://github.com/ayushsharma74" />
       </body>
     </html>
   );
