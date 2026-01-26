@@ -31,7 +31,7 @@
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.5",
     "motion": "^11.18.1",
-    "next": "15.1.5",
+    "next": "15.1.11",
     "next-auth": "^4.24.11",
     "nextjs-toploader": "^3.7.15",
     "prisma": "^6.2.1",
